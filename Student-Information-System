@@ -1,0 +1,44 @@
+Create table command:
+CREATE TABLE students (
+  student_id INT PRIMARY KEY,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  email VARCHAR(100),
+  phone_number VARCHAR(20),
+  address VARCHAR(200),
+  date_of_birth DATE,
+  enrollment_date DATE,
+  graduation_date DATE
+);
+Alter table command to add a column:
+ALTER TABLE students ADD COLUMN gender VARCHAR(10);
+Create view command:
+CREATE VIEW student_grades AS
+SELECT s.student_id, s.first_name, s.last_name, g.course_code, g.grade
+FROM students s
+JOIN grades g ON s.student_id = g.student_id;
+Create index command:
+CREATE INDEX idx_student_id ON students(student_id);
+Create foreign key constraint:
+ALTER TABLE grades
+ADD CONSTRAINT fk_student_id
+FOREIGN KEY (student_id)
+REFERENCES students(student_id)
+ON DELETE CASCADE;
+Insert command:
+INSERT INTO students (student_id, first_name, last_name, email, phone_number, address, date_of_birth, enrollment_date, graduation_date)
+VALUES (1, 'John', 'Doe', 'johndoe@email.com', '123-456-7890', '123 Main St, Anytown USA', '1995-01-01', '2018-09-01', '2022-05-01');
+Update command:
+UPDATE students
+SET phone_number = '555-555-5555'
+WHERE student_id = 1;
+Delete command:
+DELETE FROM students
+WHERE student_id = 1;
+Select command:
+SELECT student_id, first_name, last_name, email, phone_number, address, date_of_birth, enrollment_date, graduation_date
+FROM students
+WHERE enrollment_date >= '2022-01-01';
+Join command:
+SELECT s.student_id, s.first_name, s.last_name, g.course_code, g.grade
+FROM students sJOIN grades g ON s.student_id = g.student_id;
